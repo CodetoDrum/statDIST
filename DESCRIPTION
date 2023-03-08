@@ -1,14 +1,17 @@
 Package: statDIST
-Title: What the Package Does (One Line, Title Case)
+Title: Helper Functions For Statistical Learning
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Jacob", "Wojcik", , "65616819+CodetoDrum@users.noreply.github.com", role = c("aut", "cre"))
+Description: This package is designed to generate salient datasets and statistical outputs that can be used to better facilitate understanding of core statistical concepts.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 URL: https://github.com/CodetoDrum/statDIST
 BugReports: https://github.com/CodetoDrum/statDIST/issues
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Imports: 
+    stats

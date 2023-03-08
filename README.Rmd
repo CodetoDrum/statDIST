@@ -1,0 +1,48 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# statDIST
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of statDIST is to make learning fundamental statistics concepts easier. At the core of this package is the `sample_generator()` function, which allows one to generate any number of samples containing any number of measurements up to one less than a hypothetical population distribution that is user-defined. 
+
+The fundamental premise is that **seeing** data as it is transformed is much better than memorizing formulas. 
+
+## Installation
+
+You can install the development version of statDIST from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("CodetoDrum/statDIST")
+```
+
+## Example
+
+Everything starts by generating samples to experiment with. The initial creation of this function was motivated by a desire to generate sampling distributions to actually *see* the concept in action.
+
+```{r}
+test_samples <- statDIST::sample_data(
+  num_samples = 10,
+  sample_size = 25,
+  dist_size = 500,
+  max_val = 250
+)
+
+head(test_samples)
+```
+

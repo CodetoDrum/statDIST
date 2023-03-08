@@ -1,3 +1,13 @@
+#' Generate a series of statistics for a supplied series of sample data.
+#'
+#' @param samp_data A data frame of sample data
+#' @param stat The statistic to be run on each element of the data frame
+#'
+#' @return A numeric vector
+#' @export
+#'
+#' @examples
+
 sample_stats <- function(samp_data, stat = mean) {
 
         if (is.data.frame(samp_data) == FALSE) {
