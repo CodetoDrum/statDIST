@@ -16,7 +16,14 @@ sample_data <- function(num_samples = 25,
                         dist_size = 100,
                         max_val = 100) {
 
+        # Exit this function if any of the inputs are anything but a number.
+
+        stopifnot(is.numeric(num_samples), is.numeric(sample_size),
+                  is.numeric(dist_size), is.numeric(max_val))
+
         distribution <- stats::runif(dist_size, min = 0, max = max_val)
+
+        # Ensure sample sizes aren't larger than the distribution size.
 
         if (sample_size >= length(distribution)) {
 
