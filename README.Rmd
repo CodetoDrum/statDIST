@@ -51,9 +51,16 @@ test_samples <- statDIST::sample_data(
   max_val = 250
 )
 
-head(test_samples)
+head(test_samples$example_samples)
 ```
 
 In this case, relative to our combinations intuition, we have `n = 500` measurements, *choosing* `k = 25` of them in 10 total instances. For this setup, you can view the total number of **UNIQUE** combinations of 25 measurements from a population of 500 *units* using a [combination calculator](https://www.calculatorsoup.com/calculators/discretemathematics/combinations.php). From there, you know we have 10 *parallel* instances of this total set, which if run shows that we still have a very small subset of the total possible instances we *could* have sampled. 
 
 However, we can use our generator function with other package functions to demonstrate what happens to distributions of statistics to any situation we wish to simulate relative to how those statistics approximate the true underlying population parameters.   
+
+Because the information from the hypothetical population is core to understanding other package outputs, those data are also housed in the output of `sample_data()`. It is important to not the output of this function comes as a list when using other package functions (which will very likely require data frames or vectors to work).
+
+```{r}
+head(test_samples[[c("population_dist")]], n = 25)
+```
+
