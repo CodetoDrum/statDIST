@@ -5,11 +5,11 @@
 #' @param dist_size The total number of measurements within a hypothetical population distribution.
 #' @param max_val The maximum number a value can assume within the population.
 #'
-#' @return a data frame
+#' @return a list containing a data frame of samples and a vector of population measurements.
 #' @export
 #'
 #' @examples
-#' head(sample_data())
+#' head(sample_data()[[1]])
 
 sample_data <- function(num_samples = 25,
                         sample_size = 50,
@@ -31,8 +31,16 @@ sample_data <- function(num_samples = 25,
 
         }
 
-        as.data.frame(replicate(
+        samples <- as.data.frame(replicate(
                 num_samples,
                 sample(distribution, sample_size, replace = F)))
+
+        list_names <- c("example_samples", "population_dist")
+
+        obj_list <- list(samples, distribution)
+
+        names(obj_list) <- list_names
+
+        obj_list
 
 }
