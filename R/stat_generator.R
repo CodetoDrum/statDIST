@@ -1,6 +1,6 @@
 #' Generate a series of statistics for a supplied series of sample data.
 #'
-#' @param samp_data A data frame of sample data
+#' @param samp_data A data frame or data frame housed within a list
 #' @param stat The statistic to be run on each element of the data frame
 #'
 #' @return A numeric vector
