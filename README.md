@@ -31,6 +31,29 @@ Everything starts by generating samples to experiment with. The initial
 creation of this function was motivated by a desire to generate sampling
 distributions to actually *see* the concept in action.
 
+The function is set so that any given sample within the resulting data
+frame contains unique samples from the hypothetical population
+distribution. A big reason for this is to simulate the realities of
+sampling in the *real world*. When research is done, one is generally
+taking a single data set worth of measurements to then utilize for
+inference and prediction. And this leads into the understanding that the
+combination formula provides.
+
+$nCk$
+
+When we sample a population, the resulting data set represents one of
+some total number of possible sets we *could* have collected for the
+given number of measurements we actually took. We have `n` total
+measurements available to take, but we only *choose* `k` of those
+measurements.
+
+So, `sample_data()` effectively generates as many *parallel* sample sets
+for the same sample sizes from the same population. In the chunk below,
+we are basically saying create 10 parallel instances of the same means
+of sampling, collect 25 measurements in each of those instances from
+some hypothetical population with 500 possible measurements that can
+range from 0-250.
+
 ``` r
 test_samples <- statDIST::sample_data(
   num_samples = 10,
@@ -40,18 +63,32 @@ test_samples <- statDIST::sample_data(
 )
 
 head(test_samples)
-#>          V1        V2        V3        V4         V5        V6          V7
-#> 1 143.55841  72.51941 126.98961  36.92456  87.469435 181.72959   0.5877459
-#> 2  35.76111  81.42530 133.36528 124.87073 227.190344 162.83462 140.1595119
-#> 3 237.09103  84.64977 246.42320 230.94065 105.773396 214.11362 239.9545615
-#> 4  98.32326 129.20248  72.91055 102.59955 141.709435 114.98707  33.8921282
-#> 5 238.98046  72.45935 152.25161 116.93146  40.474232  53.84555 101.8878694
-#> 6 214.11362 109.86007  91.28807 222.65079   7.636704 103.06274 247.7135793
-#>          V8         V9       V10
-#> 1  34.87961  63.085903  19.63741
-#> 2 163.50261  64.218952 109.86007
-#> 3  96.41134 212.574885  80.92781
-#> 4 187.09121  85.832635  75.36191
-#> 5 147.67703   4.527207 148.11875
-#> 6 164.52108  51.350754  12.05071
+#>           V1         V2        V3        V4         V5         V6        V7
+#> 1 220.037531 199.627761  82.24498  20.33222 105.036637   5.129173 145.49630
+#> 2 103.351283   4.114628 140.96307  96.10850  89.978830 173.697645  74.12033
+#> 3   8.670273 185.122546 216.19767 210.11382  93.874113 175.320355 196.77278
+#> 4 223.799237 210.113816  24.32749 163.80686 238.061381   6.921670 113.47048
+#> 5  31.068881 216.432231 127.95142 203.46545   9.929301  85.736144 128.28356
+#> 6  49.260996 163.623187  95.84529 158.01924 221.302477  39.314231 139.53907
+#>          V8         V9        V10
+#> 1 198.65151  64.229465  27.874453
+#> 2 169.00509  70.658327   2.855304
+#> 3 242.13269  21.178258 127.305406
+#> 4  26.55791  23.427939 145.496303
+#> 5  27.07758   8.670273 201.567899
+#> 6 147.41986 199.621270 226.315577
 ```
+
+In this case, relative to our combinations intuition, we have `n = 500`
+measurements, *choosing* `k = 25` of them in 10 total instances. For
+this setup, you can view the total number of **UNIQUE** combinations of
+25 measurements from a population of 500 *units* using a [combination
+calculator](https://www.calculatorsoup.com/calculators/discretemathematics/combinations.php).
+From there, you know we have 10 *parallel* instances of this total set,
+which if run shows that we still have a very small subset of the total
+possible instances we *could* have sampled.
+
+However, we can use our generator function with other package functions
+to demonstrate what happens to distributions of statistics to any
+situation we wish to simulate relative to how those statistics
+approximate the true underlying population parameters.

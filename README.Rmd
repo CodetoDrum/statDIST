@@ -33,7 +33,15 @@ devtools::install_github("CodetoDrum/statDIST")
 
 ## Example
 
-Everything starts by generating samples to experiment with. The initial creation of this function was motivated by a desire to generate sampling distributions to actually *see* the concept in action.
+Everything starts by generating samples to experiment with. The initial creation of this function was motivated by a desire to generate sampling distributions to actually *see* the concept in action. 
+
+The function is set so that any given sample within the resulting data frame contains unique samples from the hypothetical population distribution. A big reason for this is to simulate the realities of sampling in the *real world*. When research is done, one is generally taking a single data set worth of measurements to then utilize for inference and prediction. And this leads into the understanding that the combination formula provides.
+
+$nCk$
+
+When we sample a population, the resulting data set represents one of some total number of possible sets we *could* have collected for the given number of measurements we actually took. We have `n` total measurements available to take, but we only *choose* `k` of those measurements.
+
+So, `sample_data()` effectively generates as many *parallel* sample sets for the same sample sizes from the same population. In the chunk below, we are basically saying create 10 parallel instances of the same means of sampling, collect 25 measurements in each of those instances from some hypothetical population with 500 possible measurements that can range from 0-250. 
 
 ```{r}
 test_samples <- statDIST::sample_data(
@@ -46,3 +54,6 @@ test_samples <- statDIST::sample_data(
 head(test_samples)
 ```
 
+In this case, relative to our combinations intuition, we have `n = 500` measurements, *choosing* `k = 25` of them in 10 total instances. For this setup, you can view the total number of **UNIQUE** combinations of 25 measurements from a population of 500 *units* using a [combination calculator](https://www.calculatorsoup.com/calculators/discretemathematics/combinations.php). From there, you know we have 10 *parallel* instances of this total set, which if run shows that we still have a very small subset of the total possible instances we *could* have sampled. 
+
+However, we can use our generator function with other package functions to demonstrate what happens to distributions of statistics to any situation we wish to simulate relative to how those statistics approximate the true underlying population parameters.   
