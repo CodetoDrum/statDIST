@@ -33,7 +33,7 @@ devtools::install_github("CodetoDrum/statDIST")
 
 ## Example
 
-Everything starts by generating samples to experiment with. The initial creation of this function was motivated by a desire to generate sampling distributions to actually *see* the concept in action. 
+Everything starts by generating samples to experiment with. The initial creation of this function was motivated by a desire to generate sampling distributions to actually *see* the data sets used when putting the concept in action. 
 
 The function is set so that any given sample within the resulting data frame contains unique samples from the hypothetical population distribution. A big reason for this is to simulate the realities of sampling in the *real world*. When research is done, one is generally taking a single data set worth of measurements to then utilize for inference and prediction. And this leads into the understanding that the combination formula provides.
 
@@ -56,11 +56,11 @@ head(test_samples$example_samples)
 
 In this case, relative to our combinations intuition, we have `n = 500` measurements, *choosing* `k = 25` of them in 10 total instances. For this setup, you can view the total number of **UNIQUE** combinations of 25 measurements from a population of 500 *units* using a [combination calculator](https://www.calculatorsoup.com/calculators/discretemathematics/combinations.php). From there, you know we have 10 *parallel* instances of this total set, which if run shows that we still have a very small subset of the total possible instances we *could* have sampled. 
 
-However, we can use our generator function with other package functions to demonstrate what happens to distributions of statistics to any situation we wish to simulate relative to how those statistics approximate the true underlying population parameters.   
+However, we can use our generator function with other package functions to demonstrate what happens to distributions of statistics relative to how those statistics approximate the true underlying population parameters.   
 
-Because the information from the hypothetical population is core to understanding other package outputs, those data are also housed in the output of `sample_data()`. It is important to not the output of this function comes as a list when using other package functions (which will very likely require data frames or vectors to work).
+Because the information from the hypothetical population is core to understanding other package outputs, those data are also housed in the output of `sample_data()`. It is important to note the output of this function comes as a list when using other package functions (which will very likely require data frames or vectors to work).
 
 ```{r}
-head(test_samples[[c("population_dist")]], n = 25)
+head(test_samples$population_dist, n = 25)
 ```
 

@@ -4,6 +4,7 @@
 # statDIST
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
 The goal of statDIST is to make learning fundamental statistics concepts
@@ -29,7 +30,8 @@ devtools::install_github("CodetoDrum/statDIST")
 
 Everything starts by generating samples to experiment with. The initial
 creation of this function was motivated by a desire to generate sampling
-distributions to actually *see* the concept in action.
+distributions to actually *see* the data sets used when putting the
+concept in action.
 
 The function is set so that any given sample within the resulting data
 frame contains unique samples from the hypothetical population
@@ -39,7 +41,7 @@ taking a single data set worth of measurements to then utilize for
 inference and prediction. And this leads into the understanding that the
 combination formula provides.
 
-$nCk$
+$`nCk`$
 
 When we sample a population, the resulting data set represents one of
 some total number of possible sets we *could* have collected for the
@@ -63,20 +65,20 @@ test_samples <- statDIST::sample_data(
 )
 
 head(test_samples$example_samples)
-#>           V1       V2       V3          V4          V5        V6        V7
-#> 1  92.086033 223.8434 164.4644 238.1381530 169.4489792 179.83298 167.00162
-#> 2 192.180885 155.0948 240.6190  99.1509288 147.3917305  24.75027 113.98296
-#> 3  74.555278 134.2413  41.4872 124.8308506   0.8874497  39.99445 104.02219
-#> 4  90.113901 240.9650 249.3122 243.4629253 101.2703619 170.69763 128.43728
-#> 5 149.085691 222.8487 223.3556   0.8874497 175.0157978  55.42809  70.11124
-#> 6   5.278202 202.0703 176.2667 197.2487703 234.0841477 163.24607 178.53734
-#>          V8        V9       V10
-#> 1  98.43101  35.72676  67.54563
-#> 2 200.41341 116.77145  37.91362
-#> 3 172.17115  12.00192 142.55826
-#> 4  24.39868 191.15153 192.18088
-#> 5 116.38648 237.16065  33.98742
-#> 6 186.76996 243.46293  22.23917
+#>          V1       V2       V3        V4       V5        V6       V7        V8
+#> 1  97.85125 218.0109 154.1003  33.91518 146.4028  51.59622 117.8865 194.58716
+#> 2 116.88588 154.8180 112.7855 126.23427 230.8683  87.19535 176.4280 194.16100
+#> 3  76.75105 112.9590 230.8683 239.47095 160.3899  48.35397 198.0298 109.92046
+#> 4 188.14839 245.5937 127.0606 227.34517 152.7597  89.89179 226.9816  62.89789
+#> 5 143.21573 195.9057 246.5901 209.00091 233.8444 245.97780 219.9521  46.17775
+#> 6 104.32526 208.2926 198.0298 198.02977 246.1113 175.25872 122.0597 117.61193
+#>          V9        V10
+#> 1 140.94909 227.471667
+#> 2 188.12524 115.566455
+#> 3  21.91268 108.296901
+#> 4  96.38525   9.409914
+#> 5 112.96374 187.119453
+#> 6 247.13689 191.780908
 ```
 
 In this case, relative to our combinations intuition, we have `n = 500`
@@ -89,21 +91,21 @@ which if run shows that we still have a very small subset of the total
 possible instances we *could* have sampled.
 
 However, we can use our generator function with other package functions
-to demonstrate what happens to distributions of statistics to any
-situation we wish to simulate relative to how those statistics
-approximate the true underlying population parameters.
+to demonstrate what happens to distributions of statistics relative to
+how those statistics approximate the true underlying population
+parameters.
 
 Because the information from the hypothetical population is core to
 understanding other package outputs, those data are also housed in the
-output of `sample_data()`. It is important to not the output of this
+output of `sample_data()`. It is important to note the output of this
 function comes as a list when using other package functions (which will
 very likely require data frames or vectors to work).
 
 ``` r
-head(test_samples[[c("population_dist")]], n = 25)
-#>  [1]  11.070913  78.751484 233.128789 229.008823  58.187088   5.278202
-#>  [7]  39.994450  19.998839 104.864515 179.832978  58.891338 147.275206
-#> [13] 235.539738 167.001618   2.738908 222.848717 102.426545  78.883112
-#> [19]  23.356882 211.203585 121.699438  38.230661 226.556425 136.466689
-#> [25]  87.295502
+head(test_samples$population_dist, n = 25)
+#>  [1] 159.666515 245.977797  33.295500  98.032971 225.165469  87.456204
+#>  [7] 119.697360 225.169128 168.125619 236.532331  34.863380 134.973881
+#> [13]   1.962092  72.696052 174.649086 140.051793 201.933003 143.511271
+#> [19] 214.382051  90.501719  95.415468 191.780908 194.276033  97.293035
+#> [25] 115.606920
 ```
