@@ -31,6 +31,8 @@ sample_stat <- function(.data, stat = mean, ...) {
 
         }
 
+        # Ensure only one statistic is passed to this function at a time
+
         if (is.list(stat)) {
 
                 stop("This function is only designed to run a single statistic at a time. For a list of statistical functions, use the `multi_sample_stats` function.")
@@ -47,13 +49,10 @@ sample_stat <- function(.data, stat = mean, ...) {
 
         rownames(sample_data_long) <- NULL
 
-        # Store the names of each vector from the data frame
-
-        vector_names <- unique(sample_data_long$time)
-
         # Factor the vector names
 
-        sample_data_long$time <- factor(sample_data_long$time, levels = vector_names)
+        sample_data_long$time <- factor(sample_data_long$time,
+                                        levels = unique(sample_data_long$time))
 
         # Split the long data frame based on the vector names
 
