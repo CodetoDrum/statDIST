@@ -7,7 +7,7 @@ Description: This package is designed to generate salient datasets and statistic
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 URL: https://github.com/CodetoDrum/statDIST
 BugReports: https://github.com/CodetoDrum/statDIST/issues
 Suggests: 
