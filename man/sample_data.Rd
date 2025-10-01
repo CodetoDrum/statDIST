@@ -16,11 +16,11 @@ sample_data(num_samples = 25, sample_size = 50, dist_size = 100, max_val = 100)
 \item{max_val}{The maximum number a value can assume within the population.}
 }
 \value{
-a data frame
+a list containing a data frame of samples and a vector of population measurements.
 }
 \description{
 Generate a series of equal sized samples from a user-defined distribution
 }
 \examples{
-head(sample_data())
+head(sample_data()[[1]])
 }
