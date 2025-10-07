@@ -13,9 +13,12 @@
 #' @export
 #'
 #' @examples
-#' BLANK
+#' sample_data <- sample_data()[[1]]
+#' stats_list <- list("mean", "median", "sd")
+#' test_multi <- multi_sample_stats(sample_data, stat_list = stats_list)
+#' head(test_multi[[1]])
 
-multi_sample_stats <- function(.data, stat_list = list(mean), ...) {
+multi_sample_stats <- function(.data, stat_list = list("mean", "median"), ...) {
 
         # Ensure the supplied data is a data frame
 
@@ -33,7 +36,7 @@ multi_sample_stats <- function(.data, stat_list = list(mean), ...) {
 
         }
 
-        # Generate copies of the supplied data set equal to the number of stats intending to be ran
+        # Generate copies of the supplied data set equal to the number of stats intending to be run
 
         data_copies <- replicate(length(stat_list), .data, simplify = FALSE)
 
@@ -47,6 +50,6 @@ multi_sample_stats <- function(.data, stat_list = list(mean), ...) {
 
         # Return the list of statistics
 
-        ran_stats
+        return(ran_stats)
 
 }
