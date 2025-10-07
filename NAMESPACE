@@ -3,3 +3,4 @@
 export(multi_sample_stats)
 export(sample_data)
 export(sample_stat)
+importFrom(stats,reshape)
