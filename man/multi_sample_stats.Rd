@@ -4,7 +4,7 @@
 \alias{multi_sample_stats}
 \title{Generate multiple series of statistics for a supplied series of sample data.}
 \usage{
-multi_sample_stats(.data, stat_list = list(mean), ...)
+multi_sample_stats(.data, stat_list = list("mean", "median"), ...)
 }
 \arguments{
 \item{.data}{A data frame or data frame housed within a list}
@@ -25,5 +25,8 @@ A list of equal length vectors
 Generate multiple series of statistics for a supplied series of sample data.
 }
 \examples{
-BLANK
+sample_data <- sample_data()[[1]]
+stats_list <- list("mean", "median", "sd")
+test_multi <- multi_sample_stats(sample_data, stat_list = stats_list)
+head(test_multi[[1]])
 }

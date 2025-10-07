@@ -4,7 +4,7 @@
 \alias{sample_stat}
 \title{Generate a series of statistics for a supplied series of sample data.}
 \usage{
-sample_stat(.data, stat = mean, ...)
+sample_stat(.data, stat = "mean", ...)
 }
 \arguments{
 \item{.data}{A data frame or data frame housed within a list}
@@ -23,5 +23,7 @@ A numeric vector
 Generate a series of statistics for a supplied series of sample data.
 }
 \examples{
-BLANK
+sample_data <- sample_data()[[1]]
+test_stat <- sample_stat(sample_data)
+head(test_stat)
 }
