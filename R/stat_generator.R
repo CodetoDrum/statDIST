@@ -1,5 +1,7 @@
 #' Generate a series of statistics for a supplied series of sample data.
 #'
+#' @importFrom stats reshape
+#'
 #' @param .data A data frame or data frame housed within a list
 #' @param stat The statistic to be run on each element of the data frame. This
 #' needs to be a user-defined or package function that runs a statistic. The default
@@ -11,9 +13,11 @@
 #' @export
 #'
 #' @examples
-#' BLANK
+#' sample_data <- sample_data()[[1]]
+#' test_stat <- sample_stat(sample_data)
+#' head(test_stat)
 
-sample_stat <- function(.data, stat = mean, ...) {
+sample_stat <- function(.data, stat = "mean", ...) {
 
         # Ensure the supplied data is a data frame
 
@@ -23,17 +27,17 @@ sample_stat <- function(.data, stat = mean, ...) {
 
         }
 
-        # Ensure the supplied statistic is found in either the base or stats package
+        # Ensure the supplied statistic is a real function
 
-        if (!as.character(substitute(stat)) %in% c(ls("package:base"), ls("package:stats"))) {
+        if (is.function(match.fun(stat)) == FALSE) {
 
-                warning("The supplied statistic is not found in either the `base` or `stats` package. Make sure to verify the results after running your statistic through this function.")
+                stop("Please ensure that you have passed a valid function")
 
         }
 
         # Ensure only one statistic is passed to this function at a time
 
-        if (is.list(stat)) {
+        if (is.list(stat) || length(stat) > 1) {
 
                 stop("This function is only designed to run a single statistic at a time. For a list of statistical functions, use the `multi_sample_stats` function.")
 
@@ -58,9 +62,13 @@ sample_stat <- function(.data, stat = mean, ...) {
 
         sample_long_split <- split(sample_data_long, sample_data_long$time)
 
+        # Isolate the statistic supplied
+
+        stat_choice <- match.fun(stat)
+
         # Iterate the supplied statistic over each vector element
 
-        sample_stat <- lapply(sample_long_split, function(x) { stat(x$result_value, ...) })
+        sample_stat <- lapply(sample_long_split, function(x) { stat_choice(x$result_value, ...) })
 
         # Un-list the vector statistics
 
@@ -68,6 +76,6 @@ sample_stat <- function(.data, stat = mean, ...) {
 
         # Return the resulting vector of statistic values
 
-        sample_stat_vec
+        return(sample_stat_vec)
 
 }
