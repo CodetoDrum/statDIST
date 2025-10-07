@@ -41,6 +41,6 @@ sample_data <- function(num_samples = 25,
 
         names(obj_list) <- list_names
 
-        obj_list
+        return(obj_list)
 
 }
